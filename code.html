@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ATLAS Tecnologías | Ingeniería y Automatización Industrial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#2b303e",
+              "secondary-container": "#ffaa01",
+              "surface-container-low": "#161b29",
+              "inverse-primary": "#d68f00",
+              "outline-variant": "#424656",
+              "on-primary": "#ffffff",
+              "primary": "#ffaa01",
+              "secondary-fixed-dim": "#ffd47d",
+              "surface-dim": "#0e1320",
+              "primary-fixed-dim": "#ffd47d",
+              "on-secondary-fixed": "#352200",
+              "secondary": "#ffd47d",
+              "secondary-fixed": "#ffedcc",
+              "on-surface-variant": "#c2c6d8",
+              "surface-bright": "#343948",
+              "on-error": "#690005",
+              "surface-variant": "#303443",
+              "surface-container-high": "#252a38",
+              "on-secondary-fixed-variant": "#7a5100",
+              "tertiary-fixed": "#d9e3f6",
+              "error": "#ffb4ab",
+              "on-primary-fixed": "#493100",
+              "surface-container-lowest": "#090e1b",
+              "on-secondary": "#563900",
+              "on-tertiary-fixed": "#121c29",
+              "surface-container": "#1a1f2d",
+              "tertiary": "#bdc7d9",
+              "error-container": "#93000a",
+              "surface": "#0e1320",
+              "primary-container": "#ffaa01",
+              "surface-container-highest": "#303443",
+              "on-tertiary-container": "#f5f7ff",
+              "inverse-surface": "#dee2f5",
+              "on-primary-fixed-variant": "#a46d00",
+              "tertiary-fixed-dim": "#bdc7d9",
+              "on-surface": "#dee2f5",
+              "on-tertiary": "#27313f",
+              "on-tertiary-fixed-variant": "#3d4756",
+              "on-background": "#dee2f5",
+              "primary-fixed": "#ffedcc",
+              "on-error-container": "#ffdad6",
+              "on-secondary-container": "#573a00",
+              "surface-tint": "#ffaa01",
+              "background": "#0e1320",
+              "on-primary-container": "#ffffff",
+              "tertiary-container": "#687282",
+              "outline": "#8c90a1"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .glass-panel { background: rgba(14, 19, 32, 0.6); backdrop-filter: blur(16px); }
+      .micro-grid { background-image: radial-gradient(circle, rgba(255, 170, 0, 0.1) 1px, transparent 1px); background-size: 32px 32px; }
+      .gradient-text { background: linear-gradient(135deg, #ffd47d 20%, #ffaa01 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .marquee { display: flex; overflow: hidden; user-select: none; gap: 4rem; }
+      .marquee-content { flex-shrink: 0; display: flex; justify-content: space-around; min-width: 100%; gap: 4rem; }
+      @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+      .animate-scroll { animation: scroll 40s linear infinite; }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(1deg); }
+      }
+      .float-ui { animation: float 6s ease-in-out infinite; }
+      
+      #particle-canvas, #precision-grid-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 h-20">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
+<div class="text-xl font-bold tracking-tighter text-on-surface font-headline">
+            ATLAS <span class="text-primary">Tecnologías</span>
+</div>
+<div class="hidden md:flex items-center space-x-8 font-headline tracking-tight">
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#inicio">Inicio</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#nosotros">Nosotros</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#servicios">Servicios</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#proyectos">Proyectos</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#contacto">Contacto</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 font-bold scale-95 active:scale-90 transition-transform rounded-sm"><span class="relative z-10 text-white">Contactar<br/></span></button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest" id="inicio">
+<!-- Data Network Particle System -->
+<div class="absolute inset-0 z-0">
+<canvas id="particle-canvas"></canvas>
+<!-- Tint Overlay for Legibility -->
+<div class="absolute inset-0 bg-surface-container-lowest/40 pointer-events-none"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]"></div>
+</div>
+<div class="relative z-20 max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<div class="flex items-center gap-4 mb-6">
+<span class="w-12 h-[1px] bg-secondary-container"></span>
+<span class="text-secondary-container text-xs font-black tracking-[0.3em] uppercase">Industrial Forge v2.0</span>
+</div>
+<h1 class="font-headline text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white">
+                Ingeniería y <br/><span class="gradient-text italic">Automatización</span> <br/>que Transforma
+            </h1>
+<p class="text-on-surface-variant text-xl md:text-2xl max-w-2xl mb-12 leading-relaxed font-light">
+                Soluciones integrales en <span class="text-on-surface font-medium underline decoration-primary/30">SCADA</span>, programación PLC y servicios de campo para la industria energética en la Patagonia.
+            </p>
+<div class="flex flex-wrap gap-6">
+<button class="relative px-10 py-5 bg-primary-container text-on-primary font-black uppercase tracking-widest rounded-sm transition-all hover:shadow-[0_0_30px_rgba(255,170,1,0.4)]"><span class="relative z-10 text-white">Comenzar Proyecto</span></button>
+<button class="px-10 py-5 border border-outline-variant text-on-surface font-black uppercase tracking-widest hover:bg-white/5 transition-colors rounded-sm flex items-center gap-3">
+                    Portafolio <span class="material-symbols-outlined text-xl" data-icon="arrow_outward">arrow_outward</span>
+</button>
+</div>
+</div>
+<div class="lg:col-span-5 relative hidden lg:block">
+<div class="relative z-10 p-1 bg-gradient-to-br from-outline-variant/20 to-transparent rounded-xl">
+<div class="aspect-square glass-panel rounded-lg border border-white/5 overflow-hidden shadow-2xl relative">
+<img class="w-full h-full object-cover mix-blend-luminosity opacity-50 grayscale hover:grayscale-0 transition-all duration-1000" data-alt="Industrial electrical control panel with blue indicators" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsnjGOtt4MzTGZNmtZ0-93nwkoH-O3uvBJX6gMWIZYL1y-zxOlImGmcRJfqaeQiEiDuLguYbYt8srMkBQ1tC1uvuXWDhiD-pz96U7d4LCG6Wiz_i7Fm55x7cH0Mwlmn4ACIAW74j4a2G6EZpcDW6z7UhFz1BlmndtGpNzokzLUwdWVoOKtd8xlpiZM5gJ3hO7JdRrc2Fi70fPw7-AFBJf5VrZp0AWDAB6crQ3Z4Limi7DbW4KorA1vP3oEX4NYUXDCOpjm0K03RVSZ"/>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.15)_0%,_transparent_50%)]"></div>
+<!-- Tech Overlays -->
+<div class="absolute top-6 right-6 flex flex-col gap-2 items-end">
+<div class="w-24 h-1 bg-primary-container/30 rounded-full overflow-hidden">
+<div class="w-2/3 h-full bg-primary-container animate-[progress_3s_ease-in-out_infinite]"></div>
+</div>
+<span class="text-[10px] font-mono text-primary/60 uppercase">Load Monitoring</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center p-12">
+<div class="w-full h-full border border-primary/20 rounded-lg flex items-center justify-center relative group">
+<div class="p-8 glass-panel border border-primary/40 rounded-lg transition-all group-hover:scale-105 group-hover:border-primary/80">
+<span class="material-symbols-outlined text-7xl text-primary mb-4 block" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h3 class="font-headline text-2xl font-bold text-on-surface">Núcleo de Precisión</h3>
+<p class="text-on-surface-variant text-sm mt-2 font-mono">NODE_STATUS: OPTIMAL</p>
+</div>
+<!-- Corner Accents -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Decorative Node -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 blur-[80px] rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-32 bg-surface" id="servicios">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+<div>
+<span class="label-sm text-secondary tracking-[0.2em] font-bold uppercase block mb-4">nuestros</span>
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter">Servicios Especializados</h2>
+</div>
+<p class="text-on-surface-variant max-w-md border-l border-outline-variant/30 pl-6 py-2">
+                Ingeniería de alta precisión diseñada para los entornos más exigentes de la industria energética y minera.
+            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="architecture">architecture</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-4">Ingeniería de Detalle</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Planificación técnica exhaustiva y esquemas eléctricos de precisión para infraestructuras industriales críticas.</p>
+</div>
+<!-- Card 2 -->
+<div class="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-4">Tableros Eléctricos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Diseño y fabricación propia de tableros de control y potencia bajo normas internacionales de seguridad.</p>
+</div>
+<!-- Card 3 -->
+<div class="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="terminal">terminal</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-4">Programación PLC y SCADA</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Desarrollo de lógica de control avanzada y sistemas de monitoreo remoto con HMI de alta visibilidad.</p>
+</div>
+<!-- Card 4 -->
+<div class="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="developer_board">developer_board</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-4">Software Industrial</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Soluciones de software dedicadas para la integración de datos y optimización de procesos operativos.</p>
+</div>
+<!-- Card 5 -->
+<div class="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="construction">construction</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-4">Asistencia de Campo</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Soporte técnico especializado "on-site" y mantenimiento preventivo en yacimientos y plantas.</p>
+</div>
+<!-- Card 6 -->
+<div class="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-4">Ejecución de Proyectos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Gestión integral "llave en mano" desde la concepción hasta el comisionado final del sistema.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Portfolio Section -->
+<section class="py-32 relative overflow-hidden" id="proyectos" style="background-color: #090f1c;">
+<!-- Precision Grid Coordinates Background -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+<canvas id="precision-grid-canvas"></canvas>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8">
+<div class="mb-20 text-center">
+<span class="inline-flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-xs mb-4">
+<span class="w-8 h-[1px] bg-primary"></span> Casos de Éxito <span class="w-8 h-[1px] bg-primary"></span>
+</span>
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter">Proyectos Destacados</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="Industrial hydration unit machinery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXDq6JTnHGr4ItY68jt8FxoRmAqiw0vkhYaDyuU2C6X6lS3VkMIwgtNygR-jcMc9KecfnTXudpBdabg8IcpmkoFb9SM8Za4yBbT3QQhvfOAwZ9-RqJPfMs3yO4L4ZV_hDuj-Z4jE6MN50QDPM411ERHajtU1XkThE3Bc-9nYYkKlkXqw_j7ANaag3U4PKJ8lMt-MAC0JKSQodimAfILj-af0RFcJj30ssUw5E1wQ9tH6jq8PzvlbjIbZKLj5YDRTTMRQr82U406Mol"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-bold text-[10px] tracking-widest uppercase mb-2 block">CALFRAC</span>
+<h4 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Software Unidad Hidratadora</h4>
+<div class="h-0 group-hover:h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end">
+<button class="text-sm font-bold text-primary flex items-center gap-2">Ver detalles <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="SCADA software graphs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbji0PRRNw8HjBW1vyIyqASO6mq0kDVzDThTUfMTyn7dnH9CR-PxblbMVgpkdOoCsZYGrfUHINeSzX0bdRVyZL7GnQiFrXoCy9JT_5zm-8jvTbK45ZROcZ1k5t6V6Js0jDBRky0AInZnh59KVy3P35GfYDz0neYbZCdZdi4-vLCtfV4t03dhQPOBLxWQjtyQwVE1eRKa6-Ra4kHpCVDPtuzOrzoMwZx-qv3GSLRaYeX-PxOG4AWsalerq3dolHRew4Y7EspFA0JfF1"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-bold text-[10px] tracking-widest uppercase mb-2 block">CAPSA</span>
+<h4 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Control de Polímeros</h4>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="Dusk landscape of oil site" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGCI3_d9M3QDLftd94cEuvJQISxdeP0S9yczTpgO2zNtnzr3yM6qnF72E_K_OSoxH6koQsAQh8roOpmR5NlMei20F8H0b1MIDYXJxg1YWeyDSBSZBglOP9slYWTz1LUbOg3TINXec_Bqe6JL8_xhg7rJqmOL6Bea_pxvtH5ezMEy4GRBVc77SHTcw6aw0LOezifYY214xjHsACW_JbEa31AwFLDuLNGtGE634spdopunwUVCwI0cYxA9J0NgqX235Za4HfjxURmc9D"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-bold text-[10px] tracking-widest uppercase mb-2 block">CGC</span>
+<h4 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Cañadón Salto Control</h4>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="High-voltage substation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdxBHMwLeo4RmSssQubyhQ_-cg3Ejw-gq6wvQNVlau671pxT6vkUu9f0VVqTgA3Evzgjewdm2O4f3zst2Pp9dDhQnFxHB04CWNzdPXJc_ucGhbQMRa8vlKMS7OCeQMcI25efrmqHIG39c2HWTC1fSJke6nUBr6dWfPVEVBLeoVu1wzTZtbiK69KlwaDSVyTUjyYY9pyRtbfo-67MCbQ3rRfkGstwcbizgWcZSBe3334rdqyTxhMwtZlqE0mYomcehWT703FpAi3XES"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-bold text-[10px] tracking-widest uppercase mb-2 block">CAPEX</span>
+<h4 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Planta de Inyección</h4>
+</div>
+</div>
+<!-- Project 5 -->
+<div class="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="Industrial mixer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLB32d510drWlEEI1R_1ZzZdAPIr0Uyg1A6fAechVxgycFvT8ekONAjTSF-vxKsciH9KgJYwo8GwszUbKivb-XJiDjfAT4NXpdV8Qoqy8HPFTPSStdiM0dFG4ACDI00pVxagbOoQROQW1X_5mzZ2nQwrQnWhcdN3g74eLrBeX3WxSOx36vxI47FBy__ukf61dISbHMOD3d164AMEBf1vVlI_yTj1OrM3xSUw_ZZUv-dQEoj2fFUwmOzYk2bxprjLiOlt9ZKdP4z1G"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-bold text-[10px] tracking-widest uppercase mb-2 block">GEO PATAGONIA</span>
+<h4 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Monitoreo de Cementadores</h4>
+</div>
+</div>
+<!-- Project 6 -->
+<div class="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="Frequency inverter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIPAh5MLEynlbSzwYEiOU7d3ncmmeMV5GC3umvDWtXeqNLdPyiC2E5hcnZg2BubD-rpPlYFBgY4ZtD2i_mmxygIPYr2M2HjWUtTUw7BGcg0WzirF5kfhLYbuRHes42DkR6KUbtiYLdlVnSWJRSedyRt5QWey4N-qGE8U8Mc-YVyrLwQdEzupUoDh0Ckt3pqKE4apVyFyoEvh82X5633g0M-H9QKe0zT_CQF9YC6pziNySZXMG2mpxmv0jZsXBuQhy0jD63y0xjPNAm"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-bold text-[10px] tracking-widest uppercase mb-2 block">YPF</span>
+<h4 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Variador de Bomba</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Clients Section -->
+<section class="py-24 bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 mb-12 text-center">
+<h2 class="font-headline text-2xl font-bold text-on-surface/60 uppercase tracking-widest">Empresas que Confían en Nosotros</h2>
+</div>
+<div class="marquee">
+<div class="marquee-content animate-scroll">
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">YPF</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">CALFRAC</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">CAPSA</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">CGC</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">CAPEX</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">GEO PATAGONIA</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">PAE</div>
+<div class="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic">TECPETROL</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-24 grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="p-6 bg-surface-container border-t-2 border-primary">
+<div class="text-4xl font-headline font-bold text-on-surface mb-2">+<span class="stat-value" data-target="50">0</span></div>
+<div class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">Clientes</div>
+</div>
+<div class="p-6 bg-surface-container border-t-2 border-primary">
+<div class="text-4xl font-headline font-bold text-on-surface mb-2">+<span class="stat-value" data-target="200">0</span></div>
+<div class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">Proyectos</div>
+</div>
+<div class="p-6 bg-surface-container border-t-2 border-primary">
+<div class="text-4xl font-headline font-bold text-on-surface mb-2">+<span class="stat-value" data-target="15">0</span></div>
+<div class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">Años</div>
+</div>
+<div class="p-6 bg-surface-container border-t-2 border-primary">
+<div class="text-4xl font-headline font-bold text-on-surface mb-2">+<span class="stat-value" data-target="6">0</span></div>
+<div class="text-on-surface-variant text-sm uppercase tracking-widest font-bold">Servicios</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-32 bg-surface micro-grid" id="nosotros">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<img class="w-full h-64 object-cover rounded-lg border border-outline-variant/20" data-alt="Industrial robotic arm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_5JANaCqTcjFXZ540RYQ82FYKFv-soItLXZFFqojs8uKEwW_TnuYvwhgogi2AU_N3PD-JUpBnJ6yyMorQduNiYcnsxa4mnR5B23cpFFbE2uHonilKx_0S2BIswCsAKm_wlX0i0fiBph331MRHa_UUxF_zleBgRAW6Dk9UpMsvfZvjCuz1D-CZNnj-0jozxBC650lYySNcAZd91XWPb1IEQce100W3sbp6ptSzfHLdX8MGpe3qYErxGohejvMKkh_409vUBNN4HUiq"/>
+<div class="bg-primary p-4 rounded-lg shadow-[0_0_20px_rgba(255,170,1,0.3)]">
+<span class="material-symbols-outlined text-on-primary text-3xl" data-icon="hub">hub</span>
+<div class="text-on-primary font-bold mt-2">Tecnología Allen-Bradley</div>
+</div>
+</div>
+<div class="space-y-4 pt-12">
+<div class="bg-surface-container-high p-4 rounded-lg border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="map">map</span>
+<div class="text-on-surface font-bold mt-2">Presencia en toda la Patagonia</div>
+</div>
+<img class="w-full h-64 object-cover rounded-lg border border-outline-variant/20" data-alt="Snowy Andes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL3tVHM88EqIBN3qPzJiRjx-byHn8ykbMkFpAvhVTPL-jMxrz50bfzepV3IhS0cy9hQ4UZ_qn2_mAJOFcgIcxnfHVoBePE1qk4pgPwok2SXXUZI4WZDW8JTpvUZAT1ZUhM-71H-9lt7EPzGqj50Rw4yxoVq_i1flghPkkr4y9vW4GVkQVoao4KyBckSFg3Iw2JFChnh-t_aW_NirlKapzdBN7cSSzJrobzgA1rkC4N8PoJg72SmonDGLGItKkjyqI4p8fOPqYbiCbe"/>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<span class="label-sm text-secondary tracking-[0.2em] font-bold uppercase block mb-4">nuestra identidad </span>
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter mb-8">¿Por qué ATLAS?</h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">01</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Experiencia en Oil &amp; Gas y Minería</h4>
+<p class="text-on-surface-variant leading-relaxed">Décadas de trayectoria resolviendo desafíos técnicos en los sectores más críticos de la economía nacional.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">02</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Tecnología de Vanguardia</h4>
+<p class="text-on-surface-variant leading-relaxed">Partners oficiales de Rockwell Automation y expertos certificados en SCADA Ignition y FactoryTalk.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">03</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Equipo Multidisciplinario</h4>
+<p class="text-on-surface-variant leading-relaxed">Ingenieros y técnicos especializados listos para operar en campo bajo condiciones extremas.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-32 bg-surface-container-lowest" id="contacto">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid lg:grid-cols-5 gap-16">
+<div class="lg:col-span-2">
+<span class="label-sm text-secondary tracking-[0.2em] font-bold uppercase block mb-4">INICIEMOS TU PROYECTO</span>
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter mb-8">Comenzá tu Proyecto</h2>
+<p class="text-on-surface-variant mb-12 leading-relaxed">
+                    Nuestro equipo está listo para asesorarte en la modernización de tus procesos industriales. Contáctanos hoy para una evaluación técnica.
+                </p>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="phone_in_talk">phone_in_talk</span>
+<span class="text-on-surface font-medium">+54 9 2974 61-8990</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="alternate_email">alternate_email</span>
+<span class="text-on-surface font-medium text-sm">jorge.segovia@atlas-tecnologias.com</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="text-on-surface font-medium">Comodoro Rivadavia, Patagonia, Argentina</span>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<a class="w-10 h-10 rounded-sm border border-outline-variant/30 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="share">share</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-3">
+<form class="glass-panel p-8 md:p-12 border border-outline-variant/10 rounded-xl space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Nombre Completo</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all px-4 py-3 text-on-surface rounded-sm" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Email Corporativo</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all px-4 py-3 text-on-surface rounded-sm" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Empresa</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all px-4 py-3 text-on-surface rounded-sm" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Mensaje / Requerimiento</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all px-4 py-3 text-on-surface rounded-sm" rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-primary-container text-on-primary font-black uppercase tracking-widest hover:brightness-110 transition-all rounded-sm shadow-[0_0_20px_rgba(255,170,1,0.2)]" type="submit"><span class="relative z-10 text-white">Comenzar Proyecto</span></button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12 font-body text-sm antialiased">
+<div class="space-y-6">
+<div class="text-2xl font-black text-on-surface tracking-tighter font-headline">ATLAS</div>
+<p class="text-on-surface-variant leading-relaxed">
+                Precision Engineering for a dynamic industrial future. Based in the heart of Patagonia.
+            </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="public">public</span>
+</div>
+</div>
+<div>
+<h5 class="text-on-surface font-bold mb-6 uppercase tracking-widest text-xs">Empresa</h5>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Nosotros</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Trayectoria</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Seguridad</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-on-surface font-bold mb-6 uppercase tracking-widest text-xs">Servicios</h5>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Automatización</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">PLC &amp; SCADA</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Tableros</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-on-surface font-bold mb-6 uppercase tracking-widest text-xs">Legal</h5>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacidad</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Términos</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 py-8 border-t border-outline-variant/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-on-surface-variant/50 font-bold tracking-widest uppercase">
+<div class="">© 2024 ATLAS Tecnologías. Precision Engineering.</div>
+<div class="flex gap-8">
+<span class="">Comodoro Rivadavia</span>
+<span class="">Chubut</span>
+<span class="">Argentina</span>
+</div>
+</div>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Precision Grid Coordinates Animation
+    const gridCanvas = document.getElementById('precision-grid-canvas');
+    const gctx = gridCanvas.getContext('2d');
+    let gWidth, gHeight;
+    const gridSize = 80;
+    let radarPos = -200;
+    let points = [];
+
+    const resizeGrid = () => {
+      gWidth = gridCanvas.offsetWidth;
+      gHeight = gridCanvas.offsetHeight;
+      gridCanvas.width = gWidth;
+      gridCanvas.height = gHeight;
+      initPoints();
+    };
+
+    const initPoints = () => {
+      points = [];
+      for (let x = 0; x <= gWidth; x += gridSize) {
+        for (let y = 0; y <= gHeight; y += gridSize) {
+          points.push({
+            x: x,
+            y: y,
+            offset: Math.random() * Math.PI * 2
+          });
+        }
+      }
+    };
+
+    const drawGrid = (time) => {
+      gctx.clearRect(0, 0, gWidth, gHeight);
+      
+      // Draw grid lines
+      gctx.beginPath();
+      gctx.strokeStyle = 'rgba(66, 70, 86, 0.15)';
+      gctx.lineWidth = 1;
+      
+      for (let x = 0; x <= gWidth; x += gridSize) {
+        gctx.moveTo(x, 0);
+        gctx.lineTo(x, gHeight);
+      }
+      for (let y = 0; y <= gHeight; y += gridSize) {
+        gctx.moveTo(0, y);
+        gctx.lineTo(gWidth, y);
+      }
+      gctx.stroke();
+
+      // Draw pulsating intersections
+      points.forEach(p => {
+        const pulse = (Math.sin(time * 0.001 + p.offset) + 1) / 2;
+        gctx.beginPath();
+        gctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+        gctx.fillStyle = `rgba(255, 170, 1, ${0.1 + pulse * 0.2})`;
+        gctx.fill();
+        
+        if (pulse > 0.8) {
+           gctx.shadowBlur = 4;
+           gctx.shadowColor = '#ffaa01';
+           gctx.fill();
+           gctx.shadowBlur = 0;
+        }
+      });
+
+      // Radar Sweep
+      radarPos += 2;
+      if (radarPos > gWidth + 200) radarPos = -200;
+      
+      const gradient = gctx.createLinearGradient(radarPos - 150, 0, radarPos, 0);
+      gradient.addColorStop(0, 'transparent');
+      gradient.addColorStop(0.5, 'rgba(255, 170, 1, 0.03)');
+      gradient.addColorStop(1, 'rgba(255, 170, 1, 0.08)');
+      
+      gctx.fillStyle = gradient;
+      gctx.fillRect(radarPos - 150, 0, 150, gHeight);
+      
+      // Vertical line for radar edge
+      gctx.beginPath();
+      gctx.moveTo(radarPos, 0);
+      gctx.lineTo(radarPos, gHeight);
+      gctx.strokeStyle = 'rgba(255, 170, 1, 0.15)';
+      gctx.stroke();
+
+      requestAnimationFrame(drawGrid);
+    };
+
+    window.addEventListener('resize', resizeGrid);
+    resizeGrid();
+    requestAnimationFrame(drawGrid);
+
+    // Stat counter logic
+    const observerOptions = { threshold: 0.5 };
+    const animateValue = (obj, start, end, duration) => {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const stats = entry.target.querySelectorAll('.stat-value');
+          stats.forEach((stat, index) => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            setTimeout(() => { animateValue(stat, 0, target, 2000); }, index * 200);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4.gap-8');
+    if (statsSection) observer.observe(statsSection);
+
+    // Particle System Logic
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 60;
+    const connectionDistance = 150;
+    let mouse = { x: null, y: null };
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    class Particle {
+      constructor() {
+        this.init();
+      }
+      init() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.glow = 0;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+        if (mouse.x && mouse.y) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            this.glow = Math.min(this.glow + 0.1, 1);
+          } else {
+            this.glow = Math.max(this.glow - 0.05, 0);
+          }
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        const opacity = 0.2 + this.glow * 0.8;
+        ctx.fillStyle = this.glow > 0 ? `rgba(255, 170, 1, ${opacity})` : `rgba(255, 255, 255, 0.2)`;
+        if (this.glow > 0) {
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#ffaa01';
+        } else {
+            ctx.shadowBlur = 0;
+        }
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDistance) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = (1 - dist / connectionDistance) * 0.15;
+            const combinedGlow = (particles[i].glow + particles[j].glow) / 2;
+            ctx.strokeStyle = combinedGlow > 0 ? `rgba(255, 170, 1, ${opacity + combinedGlow * 0.1})` : `rgba(255, 255, 255, ${opacity})`;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  });
+</script>
+</body></html>
