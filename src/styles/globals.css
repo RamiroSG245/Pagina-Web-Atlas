@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/inter";
+
+@theme {
+  /* ── Paleta primaria ── */
+  --color-primary: #ffaa01;
+  --color-primary-container: #ffaa01;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #ffffff;
+  --color-on-primary-fixed: #493100;
+  --color-on-primary-fixed-variant: #a46d00;
+  --color-primary-fixed: #ffedcc;
+  --color-primary-fixed-dim: #ffd47d;
+  --color-inverse-primary: #d68f00;
+  --color-surface-tint: #ffaa01;
+
+  /* ── Paleta secundaria ── */
+  --color-secondary: #ffd47d;
+  --color-secondary-container: #ffaa01;
+  --color-on-secondary: #563900;
+  --color-on-secondary-container: #573a00;
+  --color-on-secondary-fixed: #352200;
+  --color-on-secondary-fixed-variant: #7a5100;
+  --color-secondary-fixed: #ffedcc;
+  --color-secondary-fixed-dim: #ffd47d;
+
+  /* ── Paleta terciaria ── */
+  --color-tertiary: #bdc7d9;
+  --color-tertiary-container: #687282;
+  --color-on-tertiary: #27313f;
+  --color-on-tertiary-container: #f5f7ff;
+  --color-on-tertiary-fixed: #121c29;
+  --color-on-tertiary-fixed-variant: #3d4756;
+  --color-tertiary-fixed: #d9e3f6;
+  --color-tertiary-fixed-dim: #bdc7d9;
+
+  /* ── Superficies ── */
+  --color-surface: #0e1320;
+  --color-surface-dim: #0e1320;
+  --color-surface-bright: #343948;
+  --color-surface-container: #1a1f2d;
+  --color-surface-container-low: #161b29;
+  --color-surface-container-high: #252a38;
+  --color-surface-container-highest: #303443;
+  --color-surface-container-lowest: #090e1b;
+  --color-surface-variant: #303443;
+  --color-inverse-surface: #dee2f5;
+  --color-inverse-on-surface: #2b303e;
+
+  /* ── Fondo ── */
+  --color-background: #0e1320;
+  --color-on-background: #dee2f5;
+
+  /* ── Contenido sobre superficies ── */
+  --color-on-surface: #dee2f5;
+  --color-on-surface-variant: #c2c6d8;
+
+  /* ── Bordes ── */
+  --color-outline: #8c90a1;
+  --color-outline-variant: #424656;
+
+  /* ── Error ── */
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+
+  /* ── Tipografía ── */
+  --font-headline: "Space Grotesk Variable", "Space Grotesk", sans-serif;
+  --font-body: "Inter Variable", "Inter", sans-serif;
+  --font-label: "Inter Variable", "Inter", sans-serif;
+
+  /* ── Roundness (subtle = 1) ── */
+  --radius: 0.125rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+/* ── Base ── */
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+/* ── Utilidades custom ── */
+
+.glass-panel {
+  background: rgba(14, 19, 32, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+.micro-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 170, 0, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ffd47d 20%, #ffaa01 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: rgba(255, 170, 1, 0.3);
+  color: #ffaa01;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090e1b;
+}
+::-webkit-scrollbar-thumb {
+  background: #424656;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffaa01;
+}
