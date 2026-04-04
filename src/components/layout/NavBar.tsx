@@ -15,7 +15,7 @@ const sectionOffsets: Record<string, number> = {
   '#nosotros': 140,
   '#servicios': -10,
   '#proyectos': -40,
-  '#contacto': 130,
+  '#contacto': 80,
 }
 
 function handleNavClick(
