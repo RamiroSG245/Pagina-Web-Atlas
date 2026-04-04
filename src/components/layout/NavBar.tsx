@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'Contacto', href: '#contacto' },
 ]
 
-const sectionOffsets: Record<string, number> = {
+const desktopOffsets: Record<string, number> = {
   '#inicio': 80,
   '#nosotros': 140,
   '#servicios': -10,
@@ -18,10 +18,20 @@ const sectionOffsets: Record<string, number> = {
   '#contacto': 80,
 }
 
+const mobileOffsets: Record<string, number> = {
+  '#inicio': 80,
+  '#nosotros': 60,
+  '#servicios': 0,
+  '#proyectos': 80,
+  '#contacto': 70,
+}
+
 function scrollToSection(href: string, onClose?: () => void): void {
   const el = document.querySelector(href)
   if (!el) return
-  const offset = sectionOffsets[href] ?? 80
+  const isMobile = window.innerWidth < 768
+  const offsets = isMobile ? mobileOffsets : desktopOffsets
+  const offset = offsets[href] ?? 80
   window.scrollTo({ top: (el as HTMLElement).offsetTop - offset, behavior: 'smooth' })
   onClose?.()
 }
@@ -43,8 +53,6 @@ export default function NavBar() {
   useMotionValueEvent(scrollY, 'change', (y) => {
     setScrolled(y > 30)
   })
-
-  const closeMenu = () => setMenuOpen(false)
 
   return (
     <motion.nav
@@ -135,7 +143,12 @@ export default function NavBar() {
                   key={link.href}
                   variants={fadeUp}
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href, closeMenu)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const target = link.href
+                    setMenuOpen(false)
+                    setTimeout(() => scrollToSection(target), 400)
+                  }}
                   className="py-3 text-lg font-headline font-bold text-on-surface-variant hover:text-primary border-b border-outline-variant/10 last:border-0 transition-colors"
                 >
                   {link.label}
@@ -143,7 +156,10 @@ export default function NavBar() {
               ))}
               <motion.div variants={fadeUp} className="pt-4 pb-2">
                 <button
-                  onClick={() => scrollToSection('#contacto', closeMenu)}
+                  onClick={() => {
+                    setMenuOpen(false)
+                    setTimeout(() => scrollToSection('#contacto'), 400)
+                  }}
                   className="w-full bg-primary-container text-white px-6 py-3 font-bold rounded-sm"
                 >
                   Contactar
