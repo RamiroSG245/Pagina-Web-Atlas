@@ -29,12 +29,22 @@ export default function Footer() {
             heart of Patagonia.
           </p>
           <div className="flex gap-4">
-            <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+            <a
+              href="https://atlas-tecnologias.com"
+              aria-label="Sitio web de ATLAS Tecnologías"
+              className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"
+            >
               language
-            </span>
-            <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+            </a>
+            <a
+              href="https://www.linkedin.com/company/atlas-tecnologias"
+              aria-label="ATLAS Tecnologías en LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"
+            >
               public
-            </span>
+            </a>
           </div>
         </div>
 

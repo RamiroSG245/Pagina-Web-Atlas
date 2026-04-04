@@ -22,6 +22,7 @@ export default function ProjectsSection() {
       >
         <canvas
           ref={canvasRef}
+          aria-hidden="true"
           className="absolute top-0 left-0 w-full h-full"
         />
       </motion.div>
@@ -69,6 +70,9 @@ export default function ProjectsSection() {
                 <img
                   src={project.image}
                   alt={project.alt}
+                  loading="lazy"
+                  width="600"
+                  height="450"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
                 />
               </div>

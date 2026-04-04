@@ -4,7 +4,7 @@ import { stats } from '../../data/stats'
 import { useStatCounter } from '../../hooks/useStatCounter'
 import { fadeUp, staggerContainer } from '../../lib/animations'
 
-function StatCard({ value, label, target }: { value: number; label: string; target: number }) {
+function StatCard({ label, target }: { label: string; target: number }) {
   const { value: count, ref } = useStatCounter(target)
   return (
     <motion.div
@@ -64,7 +64,6 @@ export default function ClientsSection() {
         {stats.map((stat) => (
           <StatCard
             key={stat.label}
-            value={stat.value}
             label={stat.label}
             target={stat.value}
           />

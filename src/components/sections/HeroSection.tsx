@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useParticleCanvas } from '../../hooks/useParticleCanvas'
 import Button from '../ui/Button'
-import { fadeUp, fadeIn, slideFromRight, heroStagger } from '../../lib/animations'
+import { fadeUp, slideFromRight, heroStagger } from '../../lib/animations'
 
 export default function HeroSection() {
   const canvasRef = useParticleCanvas()
@@ -15,7 +15,7 @@ export default function HeroSection() {
     >
       {/* Particle canvas — parallax */}
       <motion.div className="absolute inset-0 z-0" style={{ y: parallaxY }}>
-        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" />
+        <canvas ref={canvasRef} aria-hidden="true" className="absolute top-0 left-0 w-full h-full pointer-events-none" />
         <div className="absolute inset-0 bg-surface-container-lowest/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]" />
       </motion.div>
@@ -80,6 +80,9 @@ export default function HeroSection() {
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsnjGOtt4MzTGZNmtZ0-93nwkoH-O3uvBJX6gMWIZYL1y-zxOlImGmcRJfqaeQiEiDuLguYbYt8srMkBQ1tC1uvuXWDhiD-pz96U7d4LCG6Wiz_i7Fm55x7cH0Mwlmn4ACIAW74j4a2G6EZpcDW6z7UhFz1BlmndtGpNzokzLUwdWVoOKtd8xlpiZM5gJ3hO7JdRrc2Fi70fPw7-AFBJf5VrZp0AWDAB6crQ3Z4Limi7DbW4KorA1vP3oEX4NYUXDCOpjm0K03RVSZ"
                 alt="Industrial electrical control panel with blue indicators"
+                fetchPriority="high"
+                width="600"
+                height="600"
                 className="w-full h-full object-cover mix-blend-luminosity opacity-50 grayscale hover:grayscale-0 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.15)_0%,_transparent_50%)]" />

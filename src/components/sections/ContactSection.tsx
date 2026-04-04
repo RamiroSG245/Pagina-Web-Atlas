@@ -169,12 +169,14 @@ export default function ContactSection() {
               >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+                    <label htmlFor="nombre" className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
                       Nombre Completo
                     </label>
                     <input
                       {...register('nombre')}
+                      id="nombre"
                       type="text"
+                      autoComplete="name"
                       className={`w-full bg-surface-container-lowest border ${
                         errors.nombre
                           ? 'border-error'
@@ -184,12 +186,14 @@ export default function ContactSection() {
                     <FieldError message={errors.nombre?.message} />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+                    <label htmlFor="email" className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
                       Email Corporativo
                     </label>
                     <input
                       {...register('email')}
+                      id="email"
                       type="email"
+                      autoComplete="email"
                       className={`w-full bg-surface-container-lowest border ${
                         errors.email
                           ? 'border-error'
@@ -201,12 +205,14 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+                  <label htmlFor="empresa" className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
                     Empresa
                   </label>
                   <input
                     {...register('empresa')}
+                    id="empresa"
                     type="text"
+                    autoComplete="organization"
                     className={`w-full bg-surface-container-lowest border ${
                       errors.empresa
                         ? 'border-error'
@@ -217,11 +223,12 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+                  <label htmlFor="mensaje" className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
                     Mensaje / Requerimiento
                   </label>
                   <textarea
                     {...register('mensaje')}
+                    id="mensaje"
                     rows={4}
                     className={`w-full bg-surface-container-lowest border ${
                       errors.mensaje

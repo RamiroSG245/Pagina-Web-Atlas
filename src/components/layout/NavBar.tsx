@@ -18,17 +18,21 @@ const sectionOffsets: Record<string, number> = {
   '#contacto': 80,
 }
 
+function scrollToSection(href: string, onClose?: () => void): void {
+  const el = document.querySelector(href)
+  if (!el) return
+  const offset = sectionOffsets[href] ?? 80
+  window.scrollTo({ top: (el as HTMLElement).offsetTop - offset, behavior: 'smooth' })
+  onClose?.()
+}
+
 function handleNavClick(
   e: React.MouseEvent<HTMLAnchorElement>,
   href: string,
   onClose?: () => void,
 ): void {
   e.preventDefault()
-  const el = document.querySelector(href)
-  if (!el) return
-  const offset = sectionOffsets[href] ?? 80
-  window.scrollTo({ top: (el as HTMLElement).offsetTop - offset, behavior: 'smooth' })
-  onClose?.()
+  scrollToSection(href, onClose)
 }
 
 export default function NavBar() {
@@ -54,9 +58,13 @@ export default function NavBar() {
       }`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
-        <div className="text-xl font-bold tracking-tighter text-on-surface font-headline">
+        <a
+          href="#inicio"
+          onClick={(e) => handleNavClick(e, '#inicio')}
+          className="text-xl font-bold tracking-tighter text-on-surface font-headline hover:opacity-80 transition-opacity"
+        >
           ATLAS <span className="text-primary">Tecnologías</span>
-        </div>
+        </a>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center space-x-8 font-headline tracking-tight">
@@ -73,7 +81,10 @@ export default function NavBar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="hidden md:block bg-primary-container text-white px-6 py-2 font-bold scale-95 active:scale-90 transition-transform rounded-sm">
+          <button
+            onClick={() => scrollToSection('#contacto')}
+            className="hidden md:block bg-primary-container text-white px-6 py-2 font-bold scale-95 active:scale-90 transition-transform rounded-sm"
+          >
             Contactar
           </button>
 
@@ -131,7 +142,10 @@ export default function NavBar() {
                 </motion.a>
               ))}
               <motion.div variants={fadeUp} className="pt-4 pb-2">
-                <button className="w-full bg-primary-container text-white px-6 py-3 font-bold rounded-sm">
+                <button
+                  onClick={() => scrollToSection('#contacto', closeMenu)}
+                  className="w-full bg-primary-container text-white px-6 py-3 font-bold rounded-sm"
+                >
                   Contactar
                 </button>
               </motion.div>
