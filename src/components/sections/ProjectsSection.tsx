@@ -1,5 +1,7 @@
+import { motion } from 'framer-motion'
 import { projects } from '../../data/projects'
 import { usePrecisionGrid } from '../../hooks/usePrecisionGrid'
+import { fadeUp, fadeIn, staggerContainer } from '../../lib/animations'
 
 export default function ProjectsSection() {
   const canvasRef = usePrecisionGrid()
@@ -11,31 +13,56 @@ export default function ProjectsSection() {
       style={{ backgroundColor: '#090f1c' }}
     >
       {/* Precision grid background */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="absolute inset-0 z-0 pointer-events-none opacity-40"
+      >
         <canvas
           ref={canvasRef}
           className="absolute top-0 left-0 w-full h-full"
         />
-      </div>
+      </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8">
         {/* Header */}
-        <div className="mb-20 text-center">
-          <span className="inline-flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-xs mb-4">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mb-20 text-center"
+        >
+          <motion.span
+            variants={fadeUp}
+            className="inline-flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-xs mb-4"
+          >
             <span className="w-8 h-[1px] bg-primary" />
             Casos de Éxito
             <span className="w-8 h-[1px] bg-primary" />
-          </span>
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter">
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            className="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter"
+          >
             Proyectos Destacados
-          </h2>
-        </div>
+          </motion.h2>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {projects.map((project) => (
-            <div
+            <motion.div
               key={project.title}
+              variants={fadeUp}
               className="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10"
             >
               <div className="aspect-[4/3] overflow-hidden">
@@ -62,9 +89,9 @@ export default function ProjectsSection() {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

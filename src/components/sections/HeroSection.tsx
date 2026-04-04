@@ -1,47 +1,62 @@
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useParticleCanvas } from '../../hooks/useParticleCanvas'
 import Button from '../ui/Button'
+import { fadeUp, fadeIn, slideFromRight, heroStagger } from '../../lib/animations'
 
 export default function HeroSection() {
   const canvasRef = useParticleCanvas()
+  const { scrollY } = useScroll()
+  const parallaxY = useTransform(scrollY, [0, 600], [0, -80])
 
   return (
     <section
       id="inicio"
       className="relative min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest"
     >
-      {/* Particle canvas */}
-      <div className="absolute inset-0 z-0">
+      {/* Particle canvas — parallax */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: parallaxY }}>
         <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" />
         <div className="absolute inset-0 bg-surface-container-lowest/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]" />
-      </div>
+      </motion.div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-12 items-center">
-        {/* Left content */}
-        <div className="lg:col-span-7">
-          <div className="flex items-center gap-4 mb-6">
+        {/* Left content — staggered entry */}
+        <motion.div
+          className="lg:col-span-7"
+          variants={heroStagger}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
             <span className="w-12 h-[1px] bg-secondary-container" />
             <span className="text-secondary-container text-xs font-black tracking-[0.3em] uppercase">
               Industrial Forge v2.0
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="font-headline text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white">
+          <motion.h1
+            variants={fadeUp}
+            className="font-headline text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white"
+          >
             Ingeniería y <br />
             <span className="gradient-text italic">Automatización</span> <br />
             que Transforma
-          </h1>
+          </motion.h1>
 
-          <p className="text-on-surface-variant text-xl md:text-2xl max-w-2xl mb-12 leading-relaxed font-light">
+          <motion.p
+            variants={fadeUp}
+            className="text-on-surface-variant text-xl md:text-2xl max-w-2xl mb-12 leading-relaxed font-light"
+          >
             Soluciones integrales en{' '}
             <span className="text-on-surface font-medium underline decoration-primary/30">
               SCADA
             </span>
             , programación PLC y servicios de campo para la industria energética
             en la Patagonia.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap gap-6">
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-6">
             <Button variant="primary">Comenzar Proyecto</Button>
             <Button variant="outline">
               Portafolio{' '}
@@ -49,11 +64,17 @@ export default function HeroSection() {
                 arrow_outward
               </span>
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Right panel */}
-        <div className="lg:col-span-5 relative hidden lg:block">
+        {/* Right panel — slide in from right */}
+        <motion.div
+          className="lg:col-span-5 relative hidden lg:block"
+          variants={slideFromRight}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="relative z-10 p-1 bg-gradient-to-br from-outline-variant/20 to-transparent rounded-xl">
             <div className="aspect-square glass-panel rounded-lg border border-white/5 overflow-hidden shadow-2xl relative">
               <img
@@ -97,7 +118,7 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 blur-[80px] rounded-full" />
-        </div>
+        </motion.div>
       </div>
     </section>
   )

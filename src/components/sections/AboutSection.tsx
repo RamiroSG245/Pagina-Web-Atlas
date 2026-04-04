@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion'
 import SectionLabel from '../ui/SectionLabel'
+import { fadeUp, slideFromLeft, slideFromRight, staggerContainer } from '../../lib/animations'
 
 const reasons = [
   {
@@ -25,8 +27,14 @@ export default function AboutSection() {
   return (
     <section id="nosotros" className="py-32 bg-surface micro-grid">
       <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
-        {/* Photo grid */}
-        <div className="order-2 lg:order-1">
+        {/* Photo grid — slides from left */}
+        <motion.div
+          className="order-2 lg:order-1"
+          variants={slideFromLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <img
@@ -59,17 +67,31 @@ export default function AboutSection() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Text content */}
-        <div className="order-1 lg:order-2">
+        {/* Text content — slides from right */}
+        <motion.div
+          className="order-1 lg:order-2"
+          variants={slideFromRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
           <SectionLabel>nuestra identidad</SectionLabel>
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter mb-8">
             ¿Por qué ATLAS?
           </h2>
-          <div className="space-y-8">
+
+          {/* Reasons — stagger */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="space-y-8"
+          >
             {reasons.map((reason) => (
-              <div key={reason.number} className="flex gap-6">
+              <motion.div key={reason.number} variants={fadeUp} className="flex gap-6">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
                   {reason.number}
                 </div>
@@ -79,10 +101,10 @@ export default function AboutSection() {
                     {reason.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
