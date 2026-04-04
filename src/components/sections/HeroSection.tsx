@@ -1,7 +1,18 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useParticleCanvas } from '../../hooks/useParticleCanvas'
-import Button from '../ui/Button'
 import { fadeUp, slideFromRight, heroStagger } from '../../lib/animations'
+
+function scrollToSection(href: string) {
+  const el = document.querySelector(href)
+  if (!el) return
+  const isMobile = window.innerWidth < 768
+  const offsets: Record<string, number> = {
+    '#contacto': isMobile ? 70 : 80,
+    '#proyectos': isMobile ? 80 : -40,
+  }
+  const offset = offsets[href] ?? 80
+  window.scrollTo({ top: (el as HTMLElement).offsetTop - offset, behavior: 'smooth' })
+}
 
 export default function HeroSection() {
   const canvasRef = useParticleCanvas()
@@ -57,13 +68,23 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-wrap gap-6">
-            <Button variant="primary">Comenzar Proyecto</Button>
-            <Button variant="outline">
+            <a
+              href="#contacto"
+              onClick={(e) => { e.preventDefault(); scrollToSection('#contacto') }}
+              className="font-black uppercase tracking-widest rounded-sm transition-all px-10 py-5 bg-primary-container text-white hover:shadow-[0_0_30px_rgba(255,170,1,0.4)]"
+            >
+              Comenzar Proyecto
+            </a>
+            <a
+              href="#proyectos"
+              onClick={(e) => { e.preventDefault(); scrollToSection('#proyectos') }}
+              className="font-black uppercase tracking-widest rounded-sm transition-all px-10 py-5 border border-outline-variant text-on-surface hover:bg-white/5 flex items-center gap-3"
+            >
               Portafolio{' '}
               <span className="material-symbols-outlined text-xl">
                 arrow_outward
               </span>
-            </Button>
+            </a>
           </motion.div>
         </motion.div>
 

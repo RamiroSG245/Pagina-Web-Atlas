@@ -246,6 +246,10 @@ export default function ContactSection() {
                 >
                   {isSubmitting ? 'Enviando...' : 'Comenzar Proyecto'}
                 </button>
+                <p className="flex items-center justify-center gap-1.5 text-[10px] text-on-surface-variant/60 mt-3">
+                  <span className="material-symbols-outlined text-sm leading-none">lock</span>
+                  Tus datos están protegidos. Nos pondremos en contacto en menos de 24 horas.
+                </p>
               </form>
             )}
           </motion.div>

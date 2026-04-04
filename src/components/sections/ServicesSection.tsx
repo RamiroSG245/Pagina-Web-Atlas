@@ -44,7 +44,7 @@ export default function ServicesSection() {
               variants={fadeUp}
               className="group p-8 bg-surface-container border-l-4 border-transparent hover:border-primary hover:bg-surface-container-high transition-all duration-300"
             >
-              <div className="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 flex items-center justify-center bg-primary-container/10 text-primary mb-8 group-hover:scale-110 group-hover:shadow-[0_0_18px_rgba(255,170,1,0.55)] transition-all duration-300">
                 <span className="material-symbols-outlined text-3xl">
                   {service.icon}
                 </span>
