@@ -21,12 +21,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12 font-body text-sm antialiased">
         {/* Brand */}
         <div className="space-y-6">
-          <div className="text-2xl font-black text-on-surface tracking-tighter font-headline">
-            ATLAS
-          </div>
+          <img
+            src="/images/logo/AtlasNegroTransparente.png"
+            alt="ATLAS Tecnologías"
+            className="h-32 w-auto"
+          />
           <p className="text-on-surface-variant leading-relaxed">
-            Precision Engineering for a dynamic industrial future. Based in the
-            heart of Patagonia.
+            Ingeniería de precisión para un futuro industrial dinámico. Desde Comodoro Rivadavia.
           </p>
           <div className="flex gap-4">
             <a
@@ -108,7 +109,7 @@ export default function Footer() {
 
       {/* Copyright bar */}
       <div className="max-w-7xl mx-auto px-8 py-8 border-t border-outline-variant/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-on-surface-variant/50 font-bold tracking-widest uppercase">
-        <div>© 2024 ATLAS Tecnologías. Precision Engineering.</div>
+        <div>© 2026 ATLAS Tecnologías.</div>
         <div className="flex gap-8">
           <span>Comodoro Rivadavia</span>
           <span>Chubut</span>

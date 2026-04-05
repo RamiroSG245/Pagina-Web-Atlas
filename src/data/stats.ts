@@ -5,7 +5,8 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: 50, label: 'Clientes' },
-  { value: 200, label: 'Proyectos' },
-  { value: 15, label: 'Años' },
-  { value: 6, label: 'Servicios' },
+  { value: 17, label: 'Proyectos' },
+  { value: 36, label: 'Servicios' },
+  { value: 26, label: 'Reparaciones' },
+  { value: 7, label: 'Años' },
 ]

@@ -71,7 +71,11 @@ export default function NavBar() {
           onClick={(e) => handleNavClick(e, '#inicio')}
           className="text-xl font-bold tracking-tighter text-on-surface font-headline hover:opacity-80 transition-opacity"
         >
-          ATLAS <span className="text-primary">Tecnologías</span>
+          <img
+            src="/images/logo/AtlasNegroTransparente.png"
+            alt="ATLAS Tecnologías"
+            className="h-60 w-auto"
+          />
         </a>
 
         {/* Desktop links */}

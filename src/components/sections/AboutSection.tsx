@@ -17,9 +17,9 @@ const reasons = [
   },
   {
     number: '03',
-    title: 'Equipo Multidisciplinario',
+    title: 'Integración Completa',
     description:
-      'Ingenieros y técnicos especializados listos para operar en campo bajo condiciones extremas.',
+      'Unificamos hardware y software con un conocimiento real de sus operaciones para desarrollar soluciones tecnológicas a medida.',
   },
 ]
 
@@ -38,8 +38,8 @@ export default function AboutSection() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_5JANaCqTcjFXZ540RYQ82FYKFv-soItLXZFFqojs8uKEwW_TnuYvwhgogi2AU_N3PD-JUpBnJ6yyMorQduNiYcnsxa4mnR5B23cpFFbE2uHonilKx_0S2BIswCsAKm_wlX0i0fiBph331MRHa_UUxF_zleBgRAW6Dk9UpMsvfZvjCuz1D-CZNnj-0jozxBC650lYySNcAZd91XWPb1IEQce100W3sbp6ptSzfHLdX8MGpe3qYErxGohejvMKkh_409vUBNN4HUiq"
-                alt="Industrial robotic arm"
+                src="/images/about/DuoHermano.jpg"
+                alt="Técnicos de ATLAS Tecnologías trabajando en campo"
                 loading="lazy"
                 width="400"
                 height="256"
@@ -60,12 +60,12 @@ export default function AboutSection() {
                   map
                 </span>
                 <div className="text-on-surface font-bold mt-2">
-                  Presencia en toda la Patagonia
+                  Presencia en todo Comodoro Rivadavia
                 </div>
               </div>
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL3tVHM88EqIBN3qPzJiRjx-byHn8ykbMkFpAvhVTPL-jMxrz50bfzepV3IhS0cy9hQ4UZ_qn2_mAJOFcgIcxnfHVoBePE1qk4pgPwok2SXXUZI4WZDW8JTpvUZAT1ZUhM-71H-9lt7EPzGqj50Rw4yxoVq_i1flghPkkr4y9vW4GVkQVoao4KyBckSFg3Iw2JFChnh-t_aW_NirlKapzdBN7cSSzJrobzgA1rkC4N8PoJg72SmonDGLGItKkjyqI4p8fOPqYbiCbe"
-                alt="Snowy Andes landscape, Patagonia"
+                src="/images/about/ComodoroRivadavia.jpg"
+                alt="Vista de Comodoro Rivadavia, Patagonia"
                 loading="lazy"
                 width="400"
                 height="256"

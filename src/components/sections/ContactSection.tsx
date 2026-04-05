@@ -65,12 +65,11 @@ export default function ContactSection() {
             <motion.div variants={fadeUp}>
               <SectionLabel>INICIEMOS TU PROYECTO</SectionLabel>
               <h2 className="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter mb-8">
-                Comenzá tu Proyecto
+                Hablemos
               </h2>
               <p className="text-on-surface-variant mb-12 leading-relaxed">
-                Nuestro equipo está listo para asesorarte en la modernización de
-                tus procesos industriales. Contáctanos hoy para una evaluación
-                técnica.
+                Nuestro equipo está listo para asesorarte. Contáctanos para
+                coordinar una evaluación técnica de tus procesos industriales.
               </p>
             </motion.div>
 

@@ -59,7 +59,7 @@ export default function ClientsSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-60px' }}
-        className="max-w-7xl mx-auto px-8 mt-24 grid grid-cols-2 md:grid-cols-4 gap-8"
+        className="max-w-7xl mx-auto px-8 mt-24 grid grid-cols-2 md:grid-cols-5 gap-8"
       >
         {stats.map((stat) => (
           <StatCard

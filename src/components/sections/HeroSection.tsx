@@ -42,7 +42,7 @@ export default function HeroSection() {
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
             <span className="w-12 h-[1px] bg-secondary-container" />
             <span className="text-secondary-container text-xs font-black tracking-[0.3em] uppercase">
-              Industrial Forge v2.0
+              TELEMETRÍA • CONTROL • AUTOMATIZACIÓN
             </span>
           </motion.div>
 
@@ -64,7 +64,7 @@ export default function HeroSection() {
               SCADA
             </span>
             , programación PLC y servicios de campo para la industria energética
-            en la Patagonia.
+            en Comodoro Rivadavia.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-wrap gap-6">
@@ -99,8 +99,8 @@ export default function HeroSection() {
           <div className="relative z-10 p-1 bg-gradient-to-br from-outline-variant/20 to-transparent rounded-xl">
             <div className="aspect-square glass-panel rounded-lg border border-white/5 overflow-hidden shadow-2xl relative">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsnjGOtt4MzTGZNmtZ0-93nwkoH-O3uvBJX6gMWIZYL1y-zxOlImGmcRJfqaeQiEiDuLguYbYt8srMkBQ1tC1uvuXWDhiD-pz96U7d4LCG6Wiz_i7Fm55x7cH0Mwlmn4ACIAW74j4a2G6EZpcDW6z7UhFz1BlmndtGpNzokzLUwdWVoOKtd8xlpiZM5gJ3hO7JdRrc2Fi70fPw7-AFBJf5VrZp0AWDAB6crQ3Z4Limi7DbW4KorA1vP3oEX4NYUXDCOpjm0K03RVSZ"
-                alt="Industrial electrical control panel with blue indicators"
+                src="/images/hero/panel-control.jpg"
+                alt="Tablero de control fabricado por ATLAS Tecnologías"
                 fetchPriority="high"
                 width="600"
                 height="600"
@@ -114,22 +114,22 @@ export default function HeroSection() {
                   <div className="w-2/3 h-full bg-primary-container" />
                 </div>
                 <span className="text-[10px] font-mono text-primary/60 uppercase">
-                  Load Monitoring
+                  Monitoreo de Carga
                 </span>
               </div>
 
               {/* Center overlay */}
               <div className="absolute inset-0 flex items-center justify-center p-12">
                 <div className="w-full h-full border border-primary/20 rounded-lg flex items-center justify-center relative group">
-                  <div className="p-8 glass-panel border border-primary/40 rounded-lg transition-all group-hover:scale-105 group-hover:border-primary/80">
+                  <div className="p-8 glass-panel border border-primary/40 rounded-lg transition-all group-hover:scale-105 group-hover:border-primary/80 group-hover:shadow-[0_0_18px_rgba(255,170,1,0.55)]">
                     <span className="material-symbols-outlined text-7xl text-primary mb-4 block">
-                      precision_manufacturing
+                      developer_board
                     </span>
                     <h3 className="font-headline text-2xl font-bold text-on-surface">
-                      Núcleo de Precisión
+                      Núcleo de Control Lógico
                     </h3>
                     <p className="text-on-surface-variant text-sm mt-2 font-mono">
-                      NODE_STATUS: OPTIMAL
+                      STATUS: PROGRAMA EN EJECUCIÓN
                     </p>
                   </div>
                   {/* Corner accents */}
