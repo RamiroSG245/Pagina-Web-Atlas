@@ -51,8 +51,8 @@ export default function HeroSection() {
             className="font-headline text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white"
           >
             Ingeniería y <br />
-            <span className="gradient-text italic">Automatización</span> <br />
-            que Transforma
+            <span className="gradient-text" style={{ fontFamily: '"michroma",sans-serif', WebkitTextStroke: '0px #ffaa01', letterSpacing: '-0.001em', lineHeight: '1em', fontSize: '0.7em',fontWeight: 600 }}>Automatización <br />
+            </span>que Transforma
           </motion.h1>
 
           <motion.p

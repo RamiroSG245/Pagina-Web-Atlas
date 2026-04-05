@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "@fontsource-variable/space-grotesk";
 @import "@fontsource-variable/inter";
+@import "@fontsource/chakra-petch/400.css";
+@import "@fontsource/oswald/600.css";
+@import "@fontsource/michroma/800.css";
 
 @theme {
   /* ── Paleta primaria ── */

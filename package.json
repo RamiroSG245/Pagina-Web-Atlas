@@ -11,6 +11,9 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.0",
     "@fontsource-variable/space-grotesk": "^5.1.0",
+    "@fontsource/chakra-petch": "^5.2.7",
+    "@fontsource/michroma": "^5.2.8",
+    "@fontsource/oswald": "^5.2.8",
     "@hookform/resolvers": "^3.9.0",
     "framer-motion": "^11.12.0",
     "react": "^18.3.1",
