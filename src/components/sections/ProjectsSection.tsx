@@ -70,11 +70,10 @@ export default function ProjectsSection() {
                 <div
                   role="img"
                   aria-label={project.alt}
-                  className="w-full h-full transition-[background-size] duration-700 opacity-60 group-hover:[background-size:115%]"
+                  className="w-full h-full transition-[background-size] duration-700 opacity-60 [background-size:100%] group-hover:[background-size:115%]"
                   style={{
                     backgroundImage: `url(${project.image})`,
-                    backgroundSize: '100%',
-                    backgroundPosition: 'center',
+                    backgroundPosition: project.imagePosition ?? 'center',
                   }}
                 />
               </div>

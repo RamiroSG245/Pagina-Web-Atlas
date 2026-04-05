@@ -3,6 +3,8 @@ export interface Project {
   title: string
   image: string
   alt: string
+  /** CSS background-position override. Default: 'center'. E.g. 'top', 'center 20%' */
+  imagePosition?: string
 }
 
 export const projects: Project[] = [
@@ -29,6 +31,7 @@ export const projects: Project[] = [
     title: 'Planta de Inyección',
     image: '/images/projects/capex.jpeg',
     alt: 'Tablero de control para planta de inyección CAPEX',
+    imagePosition: 'center 35%', // 'center 20%' si necesitás más precisión
   },
   {
     client: 'GEO PATAGONIA',
