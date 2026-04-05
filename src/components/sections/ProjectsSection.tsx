@@ -66,14 +66,16 @@ export default function ProjectsSection() {
               variants={fadeUp}
               className="group relative bg-surface-container-low overflow-hidden rounded-lg border border-outline-variant/10"
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.alt}
-                  loading="lazy"
-                  width="600"
-                  height="450"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
+              <div className="aspect-[4/3.2] overflow-hidden">
+                <div
+                  role="img"
+                  aria-label={project.alt}
+                  className="w-full h-full transition-[background-size] duration-700 opacity-60 group-hover:[background-size:115%]"
+                  style={{
+                    backgroundImage: `url(${project.image})`,
+                    backgroundSize: '100%',
+                    backgroundPosition: 'center',
+                  }}
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
