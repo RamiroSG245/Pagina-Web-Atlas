@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useParticleCanvas } from '../../hooks/useParticleCanvas'
 import { fadeUp, slideFromRight, heroStagger } from '../../lib/animations'
@@ -17,12 +18,21 @@ function scrollToSection(href: string) {
 export default function HeroSection() {
   const canvasRef = useParticleCanvas()
   const { scrollY } = useScroll()
-  const parallaxY = useTransform(scrollY, [0, 600], [0, -80])
+
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  const parallaxY = useTransform(scrollY, [0, 600], [0, isMobile ? 0 : -80])
 
   return (
     <section
       id="inicio"
-      className="relative min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest"
+      className="relative min-h-screen lg:min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest"
     >
       {/* Particle canvas — parallax */}
       <motion.div className="absolute inset-0 z-0" style={{ y: parallaxY }}>
@@ -31,7 +41,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]" />
       </motion.div>
 
-      <div className="relative z-20 max-w-7xl mx-auto px-8 grid lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid lg:grid-cols-12 gap-12 items-center">
         {/* Left content — staggered entry */}
         <motion.div
           className="lg:col-span-7"
@@ -40,7 +50,7 @@ export default function HeroSection() {
           animate="visible"
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="w-12 h-[1px] bg-secondary-container" />
+            <span className="w-8 h-[1px] bg-secondary-container" />
             <span className="text-secondary-container text-xs font-black tracking-[0.3em] uppercase">
               TELEMETRÍA • CONTROL • AUTOMATIZACIÓN
             </span>
@@ -48,7 +58,7 @@ export default function HeroSection() {
 
           <motion.h1
             variants={fadeUp}
-            className="font-headline text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white"
+            className="font-headline text-5xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white"
           >
             Ingeniería y <br />
             <span className="gradient-text" style={{ fontFamily: '"michroma",sans-serif', WebkitTextStroke: '0px #ffaa01', letterSpacing: '-0.001em', lineHeight: '1em', fontSize: '0.7em',fontWeight: 600 }}>Automatización <br />
@@ -57,7 +67,7 @@ export default function HeroSection() {
 
           <motion.p
             variants={fadeUp}
-            className="text-on-surface-variant text-xl md:text-2xl max-w-2xl mb-12 leading-relaxed font-light"
+            className="text-on-surface-variant text-base sm:text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-light"
           >
             Soluciones integrales en{' '}
             <span className="text-on-surface font-medium underline decoration-primary/30">
@@ -67,21 +77,21 @@ export default function HeroSection() {
             en Comodoro Rivadavia.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex flex-wrap gap-6">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-6 items-start">
             <a
               href="#contacto"
               onClick={(e) => { e.preventDefault(); scrollToSection('#contacto') }}
-              className="font-black uppercase tracking-widest rounded-sm transition-all px-10 py-5 bg-primary-container text-white hover:shadow-[0_0_30px_rgba(255,170,1,0.4)]"
+              className="inline-flex items-center justify-center font-black uppercase tracking-widest rounded-sm transition-all px-6 py-3 sm:px-10 sm:py-5 text-sm sm:text-base bg-primary-container text-white hover:shadow-[0_0_30px_rgba(255,170,1,0.4)]"
             >
               Comenzar Proyecto
             </a>
             <a
               href="#proyectos"
               onClick={(e) => { e.preventDefault(); scrollToSection('#proyectos') }}
-              className="font-black uppercase tracking-widest rounded-sm transition-all px-10 py-5 border border-outline-variant text-on-surface hover:bg-white/5 flex items-center gap-3"
+              className="font-black uppercase tracking-widest rounded-sm transition-all px-6 py-3 sm:px-10 sm:py-5 text-sm sm:text-base border border-outline-variant text-on-surface hover:bg-white/5 flex items-center gap-3"
             >
               Portafolio{' '}
-              <span className="material-symbols-outlined text-xl">
+              <span className="material-symbols-outlined text-sm sm:text-base leading-none">
                 arrow_outward
               </span>
             </a>
