@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { clients } from '../../data/clients'
 import { stats } from '../../data/stats'
@@ -22,9 +23,39 @@ function StatCard({ label, target }: { label: string; target: number }) {
   )
 }
 
-export default function ClientsSection() {
-  const marqueeItems = [...clients, ...clients]
+function ClientMarquee() {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const items = [...clients, ...clients]
 
+  function handleClick() {
+    if (!trackRef.current) return
+    const current = trackRef.current.style.animationPlayState
+    trackRef.current.style.animationPlayState = current === 'paused' ? 'running' : 'paused'
+  }
+
+  return (
+    <div className="overflow-hidden cursor-pointer" onClick={handleClick}>
+      <div ref={trackRef} className="marquee-track flex gap-16 items-center py-4">
+        {items.map((client, i) => (
+          <div
+            key={`${client.name}-${i}`}
+            className="flex-shrink-0 opacity-60 hover:opacity-100 transition-all duration-300"
+          >
+            <img
+              src={client.logo}
+              alt={client.name}
+              style={{ width: `${client.width ?? 140}px`, height: 'auto' }}
+              loading="lazy"
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function ClientsSection() {
   return (
     <section className="py-24 bg-surface-container-low overflow-hidden">
       <motion.div
@@ -39,19 +70,7 @@ export default function ClientsSection() {
         </h2>
       </motion.div>
 
-      {/* Marquee */}
-      <div className="marquee">
-        <div className="marquee-content animate-scroll">
-          {marqueeItems.map((client, i) => (
-            <div
-              key={`${client}-${i}`}
-              className="flex items-center gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-3xl font-black font-headline text-on-surface italic"
-            >
-              {client}
-            </div>
-          ))}
-        </div>
-      </div>
+      <ClientMarquee />
 
       {/* Stats */}
       <motion.div

@@ -3,7 +3,7 @@
 @import "@fontsource-variable/inter";
 @import "@fontsource/chakra-petch/400.css";
 @import "@fontsource/oswald/600.css";
-@import "@fontsource/michroma/800.css";
+@import "@fontsource/michroma/400.css";
 
 @theme {
   /* ── Paleta primaria ── */
@@ -122,29 +122,19 @@ body {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
+
 /* ── Marquee ── */
-.marquee {
+.marquee-track {
   display: flex;
-  overflow: hidden;
-  user-select: none;
-  gap: 4rem;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-scroll 60s linear infinite;
 }
 
-.marquee-content {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: space-around;
-  min-width: 100%;
-  gap: 4rem;
-}
-
-@keyframes scroll {
+@keyframes marquee-scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-
-.animate-scroll {
-  animation: scroll 40s linear infinite;
+  to   { transform: translateX(-50%); }
 }
 
 /* ── Float ── */
