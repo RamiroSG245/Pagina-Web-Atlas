@@ -39,9 +39,13 @@ export function useParticleCanvas() {
     const resize = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
-      particles = Array.from({ length: PARTICLE_COUNT }, () =>
-        createParticle(canvas.width, canvas.height)
-      )
+      // Only initialize particles once — never reinitialize on resize (prevents
+      // iOS Safari address bar show/hide from resetting particle positions)
+      if (particles.length === 0) {
+        particles = Array.from({ length: PARTICLE_COUNT }, () =>
+          createParticle(canvas.width, canvas.height)
+        )
+      }
     }
 
     const onMouseMove = (e: MouseEvent) => {
@@ -114,15 +118,30 @@ export function useParticleCanvas() {
       rafId = requestAnimationFrame(animate)
     }
 
-    window.addEventListener('resize', resize)
-    window.addEventListener('mousemove', onMouseMove)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+
+    // Debounced resize — prevents iOS Safari address bar transitions from
+    // triggering unnecessary canvas dimension recalculations
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null
+    const onResize = () => {
+      if (resizeTimer) clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(resize, 150)
+    }
+
+    window.addEventListener('resize', onResize)
+    if (!isTouchDevice) {
+      window.addEventListener('mousemove', onMouseMove)
+    }
     resize()
     rafId = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(rafId)
-      window.removeEventListener('resize', resize)
-      window.removeEventListener('mousemove', onMouseMove)
+      if (resizeTimer) clearTimeout(resizeTimer)
+      window.removeEventListener('resize', onResize)
+      if (!isTouchDevice) {
+        window.removeEventListener('mousemove', onMouseMove)
+      }
     }
   }, [])
 

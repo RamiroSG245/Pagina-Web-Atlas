@@ -19,10 +19,9 @@ export default function HeroSection() {
   const canvasRef = useParticleCanvas()
   const { scrollY } = useScroll()
 
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
-    check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
   }, [])
@@ -34,8 +33,8 @@ export default function HeroSection() {
       id="inicio"
       className="relative min-h-screen lg:min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest"
     >
-      {/* Particle canvas — parallax */}
-      <motion.div className="absolute inset-0 z-0" style={{ y: parallaxY }}>
+      {/* Particle canvas — parallax desktop only, static on mobile */}
+      <motion.div className="absolute inset-0 z-0" style={isMobile ? undefined : { y: parallaxY }}>
         <canvas ref={canvasRef} aria-hidden="true" className="absolute top-0 left-0 w-full h-full pointer-events-none" />
         <div className="absolute inset-0 bg-surface-container-lowest/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]" />
