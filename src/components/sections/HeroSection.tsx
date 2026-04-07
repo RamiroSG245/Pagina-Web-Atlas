@@ -19,9 +19,10 @@ export default function HeroSection() {
   const canvasRef = useParticleCanvas()
   const { scrollY } = useScroll()
 
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
+  const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
+    check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
   }, [])
@@ -33,8 +34,8 @@ export default function HeroSection() {
       id="inicio"
       className="relative min-h-screen lg:min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest"
     >
-      {/* Particle canvas — parallax desktop only, static on mobile */}
-      <motion.div className="absolute inset-0 z-0" style={isMobile ? undefined : { y: parallaxY }}>
+      {/* Particle canvas — parallax */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: parallaxY }}>
         <canvas ref={canvasRef} aria-hidden="true" className="absolute top-0 left-0 w-full h-full pointer-events-none" />
         <div className="absolute inset-0 bg-surface-container-lowest/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]" />
@@ -60,7 +61,7 @@ export default function HeroSection() {
             className="font-headline text-5xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tighter mb-8 text-white"
           >
             Ingeniería y <br />
-            <span className="gradient-text" style={{ fontFamily: '"michroma",sans-serif', WebkitTextStroke: '0px #ffaa01', letterSpacing: '-0.001em', lineHeight: '1em', fontSize: '0.7em',fontWeight: 600 }}>Automatización <br />
+            <span className="gradient-text" style={{ fontFamily: "'Zen Dots'", letterSpacing: '-0.001em', lineHeight: '1em', fontSize: '0.75em', fontWeight: 400 }}>Automatización <br />
             </span>que Transforma
           </motion.h1>
 
@@ -76,11 +77,11 @@ export default function HeroSection() {
             en Comodoro Rivadavia.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-6 items-start">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 items-start">
             <a
               href="#contacto"
               onClick={(e) => { e.preventDefault(); scrollToSection('#contacto') }}
-              className="inline-flex items-center justify-center font-black uppercase tracking-widest rounded-sm transition-all px-6 py-3 sm:px-10 sm:py-5 text-sm sm:text-base bg-primary-container text-white hover:shadow-[0_0_30px_rgba(255,170,1,0.4)]"
+              className="font-black uppercase tracking-widest rounded-sm transition-all px-6 py-3 sm:px-10 sm:py-5 text-sm sm:text-base bg-primary-container text-white hover:shadow-[0_0_30px_rgba(255,170,1,0.4)]"
             >
               Comenzar Proyecto
             </a>
@@ -90,7 +91,7 @@ export default function HeroSection() {
               className="font-black uppercase tracking-widest rounded-sm transition-all px-6 py-3 sm:px-10 sm:py-5 text-sm sm:text-base border border-outline-variant text-on-surface hover:bg-white/5 flex items-center gap-3"
             >
               Portafolio{' '}
-              <span className="material-symbols-outlined text-sm sm:text-base leading-none">
+              <span className="material-symbols-outlined text-xl">
                 arrow_outward
               </span>
             </a>
