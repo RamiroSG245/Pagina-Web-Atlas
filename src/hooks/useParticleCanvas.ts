@@ -16,8 +16,8 @@ function createParticle(width: number, height: number): Particle {
   return {
     x: Math.random() * width,
     y: Math.random() * height,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.3,
+    vx: (Math.random() - 0.5) * 0.7,
+    vy: (Math.random() - 0.5) * 0.7,
     radius: Math.random() * 1.5 + 0.5,
     glow: 0,
   }
@@ -75,6 +75,7 @@ export function useParticleCanvas() {
             dist < 100
               ? Math.min(p.glow + 0.1, 1)
               : Math.max(p.glow - 0.05, 0)
+
         }
 
         // draw particle
@@ -113,6 +114,27 @@ export function useParticleCanvas() {
             ctx.stroke()
           }
         }
+      }
+
+      // Conexiones partícula → mouse
+      if (mouse.x !== null && mouse.y !== null) {
+        const mouseConnectionDistance = 200
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i]
+          const dx = p.x - mouse.x
+          const dy = p.y - mouse.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < mouseConnectionDistance) {
+            const opacity = (1 - dist / mouseConnectionDistance) * 0.4
+            ctx.beginPath()
+            ctx.moveTo(p.x, p.y)
+            ctx.lineTo(mouse.x, mouse.y)
+            ctx.strokeStyle = `rgba(255, 170, 1, ${opacity})`
+            ctx.lineWidth = 1
+            ctx.stroke()
+          }
+        }
+
       }
 
       rafId = requestAnimationFrame(animate)

@@ -22,7 +22,7 @@ export const clients: Client[] = [
   { name: 'ChampionX', logo: '/images/clients/championx.png', width: 220 },
   { name: 'Halliburton', logo: '/images/clients/halliburton.png', width: 120 },
   { name: 'Weatherford', logo: '/images/clients/weatherford.png', width: 200 },
-  { name: 'NOV Tuboscope', logo: '/images/clients/tuboscope.png' },
+  { name: 'NOV Tuboscope', logo: '/images/clients/tuboscope.png', width: 130 },
   { name: 'Tomrel', logo: '/images/clients/tomrel.png', width: 200 },
   { name: 'Polyar', logo: '/images/clients/polyar.png', width: 200 },
   { name: 'Norpatagonica', logo: '/images/clients/norpatagonica.png', width: 85 },
