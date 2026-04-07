@@ -93,13 +93,6 @@ export default function NavBar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => scrollToSection('#contacto')}
-            className="hidden md:block bg-primary-container text-white px-6 py-2 font-bold scale-95 active:scale-90 transition-transform rounded-sm"
-          >
-            Contactar
-          </button>
-
           {/* Hamburger — mobile only */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -158,17 +151,6 @@ export default function NavBar() {
                   {link.label}
                 </motion.a>
               ))}
-              <motion.div variants={fadeUp} className="pt-4 pb-2">
-                <button
-                  onClick={() => {
-                    setMenuOpen(false)
-                    setTimeout(() => scrollToSection('#contacto'), 400)
-                  }}
-                  className="w-full bg-primary-container text-white px-6 py-3 font-bold rounded-sm"
-                >
-                  Contactar
-                </button>
-              </motion.div>
             </motion.div>
           </motion.div>
         )}

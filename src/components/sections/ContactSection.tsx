@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { motion } from 'framer-motion'
+import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa6'
 import SectionLabel from '../ui/SectionLabel'
+import ShinyButton from '../ui/ShinyButton'
 import { fadeUp, slideFromRight, staggerContainer } from '../../lib/animations'
 
 const schema = z.object({
@@ -91,12 +93,24 @@ export default function ContactSection() {
             </motion.div>
 
             <motion.div variants={fadeUp} className="mt-12 flex gap-4">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-sm border border-outline-variant/30 flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all"
-              >
-                <span className="material-symbols-outlined text-xl">share</span>
-              </a>
+              <ShinyButton
+                href="https://www.instagram.com/atlastecnologias/?hl=es"
+                ariaLabel="Instagram de Atlas Tecnologías"
+                variant="red"
+                icon={<FaInstagram size={22} className="text-rose-400" />}
+              />
+              <ShinyButton
+                href="https://www.linkedin.com/in/jorge-s-58a6a156/"
+                ariaLabel="LinkedIn de Jorge Segovia"
+                variant="indigo"
+                icon={<FaLinkedinIn size={22} className="text-indigo-400" />}
+              />
+              <ShinyButton
+                href="https://wa.me/5492974618990"
+                ariaLabel="WhatsApp de Atlas Tecnologías"
+                variant="green"
+                icon={<FaWhatsapp size={22} className="text-green-400" />}
+              />
             </motion.div>
           </motion.div>
 
