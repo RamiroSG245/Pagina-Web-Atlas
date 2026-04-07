@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
+import { Home, Users, Cpu, Briefcase, Mail } from 'lucide-react'
+import { LimelightNav } from '../ui/LimelightNav'
 import { fadeUp, staggerContainer } from '../../lib/animations'
 
 const navLinks = [
@@ -8,6 +10,14 @@ const navLinks = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Proyectos', href: '#proyectos' },
   { label: 'Contacto', href: '#contacto' },
+]
+
+const desktopNavItems = [
+  { id: 'inicio',    icon: <Home />,     label: 'Inicio',    href: '#inicio' },
+  { id: 'nosotros',  icon: <Users />,    label: 'Nosotros',  href: '#nosotros' },
+  { id: 'servicios', icon: <Cpu />,      label: 'Servicios', href: '#servicios' },
+  { id: 'proyectos', icon: <Briefcase />, label: 'Proyectos', href: '#proyectos' },
+  { id: 'contacto',  icon: <Mail />,     label: 'Contacto',  href: '#contacto' },
 ]
 
 const desktopOffsets: Record<string, number> = {
@@ -65,7 +75,7 @@ export default function NavBar() {
           : 'bg-transparent backdrop-blur-none border-transparent'
       }`}
     >
-      <div className="flex justify-between items-center max-w-7xl mx-auto px-6 h-full">
+       <div className="flex items-center gap-12 max-w-7xl mx-auto px-6 h-full w-full">
         <a
           href="#inicio"
           onClick={(e) => handleNavClick(e, '#inicio')}
@@ -78,18 +88,16 @@ export default function NavBar() {
           />
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center space-x-8 font-headline tracking-tight">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-on-surface-variant hover:text-on-surface transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+        {/* Desktop nav — LimelightNav */}
+        <div className="hidden md:flex flex-1 h-full ml-0">
+          <LimelightNav
+            items={desktopNavItems.map((item) => ({
+              id: item.id,
+              icon: item.icon,
+              label: item.label,
+              onClick: () => scrollToSection(item.href),
+            }))}
+          />
         </div>
 
         <div className="flex items-center gap-4">
