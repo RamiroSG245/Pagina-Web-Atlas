@@ -91,12 +91,16 @@
 /* ── Base ── */
 html {
   color-scheme: dark;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   font-family: var(--font-body);
   background-color: var(--color-surface);
   color: var(--color-on-surface);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* ── Utilidades custom ── */
@@ -157,17 +161,19 @@ body {
   color: #ffaa01;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #090e1b;
-}
-::-webkit-scrollbar-thumb {
-  background: #424656;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ffaa01;
+/* ── Scrollbar (solo desktop con mouse, no ocupa espacio en mobile) ── */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #090e1b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #424656;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffaa01;
+  }
 }

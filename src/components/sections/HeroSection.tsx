@@ -49,8 +49,8 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="w-8 h-[1px] bg-secondary-container" />
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6 overflow-hidden">
+            <span className="w-8 shrink-0 h-[1px] bg-secondary-container" />
             <span className="text-secondary-container text-xs font-black tracking-[0.3em] uppercase">
               TELEMETRÍA • CONTROL • AUTOMATIZACIÓN
             </span>
