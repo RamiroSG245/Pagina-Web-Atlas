@@ -25,8 +25,9 @@ export default function ServicesSection() {
             variants={fadeUp}
             className="text-on-surface-variant max-w-md border-l border-outline-variant/30 pl-6 py-2"
           >
-            Ingeniería de alta precisión diseñada para los entornos más
-            exigentes de la industria energética y minera.
+           En ATLAS Tecnologías desarrollamos soluciones integrales 
+           para la automatización y control de procesos industriales,
+           abarcando todas las etapas del proyecto
           </motion.p>
         </motion.div>
 

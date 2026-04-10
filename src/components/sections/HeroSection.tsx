@@ -69,12 +69,14 @@ export default function HeroSection() {
             variants={fadeUp}
             className="text-on-surface-variant text-base sm:text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-light"
           >
-            Soluciones integrales en{' '}
+            Soluciones integrales para la {' '}
             <span className="text-on-surface font-medium underline decoration-primary/30">
-              SCADA
+              AUTOMATIZACIÓN
             </span>
-            , programación PLC y servicios de campo para la industria energética
-            en Comodoro Rivadavia.
+            y {' '}
+            <span className="text-on-surface font-medium underline decoration-primary/30">
+              CONTROL
+            </span> de procesos para la industria energética
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 items-start">
@@ -136,10 +138,10 @@ export default function HeroSection() {
                       developer_board
                     </span>
                     <h3 className="font-headline text-2xl font-bold text-on-surface">
-                      Núcleo de Control Lógico
+                      Control Inteligente
                     </h3>
                     <p className="text-on-surface-variant text-sm mt-2 font-mono">
-                      STATUS: PROGRAMA EN EJECUCIÓN
+                      OPTIMIZANDO LA PRODUCCIÓN
                     </p>
                   </div>
                   {/* Corner accents */}
