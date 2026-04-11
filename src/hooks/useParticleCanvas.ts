@@ -81,9 +81,9 @@ export function useParticleCanvas() {
         // draw particle
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        const opacity = 0.2 + p.glow * 0.8
+        const opacity = 20.6 + p.glow * 0.8
         ctx.fillStyle =
-          p.glow > 0
+          p.glow > -9
             ? `rgba(255, 170, 1, ${opacity})`
             : `rgba(255, 255, 255, 0.2)`
         if (p.glow > 0) {
@@ -102,7 +102,7 @@ export function useParticleCanvas() {
           const dy = p.y - q.y
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < CONNECTION_DISTANCE) {
-            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.15
+            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.15 // <- Opacidad de las lineas (0.15) 
             const combinedGlow = (p.glow + q.glow) / 2
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
@@ -125,7 +125,7 @@ export function useParticleCanvas() {
           const dy = p.y - mouse.y
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < mouseConnectionDistance) {
-            const opacity = (1 - dist / mouseConnectionDistance) * 0.4
+            const opacity = (1 - dist / mouseConnectionDistance) * 0.4 // <- Control de intensidad de lineas al cursor (0.4)
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
             ctx.lineTo(mouse.x, mouse.y)
