@@ -84,7 +84,7 @@ export default function NavBar() {
           <img
             src="/images/logo/AtlasNegroTransparente.png"
             alt="ATLAS Tecnologías"
-            className="h-60 w-auto"
+            className="h-40 w-auto"
           />
         </a>
 
