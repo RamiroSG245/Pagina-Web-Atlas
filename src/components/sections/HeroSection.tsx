@@ -70,11 +70,11 @@ export default function HeroSection() {
             className="text-on-surface-variant text-base sm:text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-light"
           >
             Soluciones integrales para la {' '}
-            <span className="text-on-surface font-medium underline decoration-primary/30">
-              AUTOMATIZACIÓN y 
+            <span className="text-on-surface font-medium">
+              AUTOMATIZACIÓN
             </span>
-             {' '}
-            <span className="text-on-surface font-medium underline decoration-primary/30">
+            {' '}y{' '}
+            <span className="text-on-surface font-medium">
               CONTROL
             </span> de procesos para la industria energética
           </motion.p>
