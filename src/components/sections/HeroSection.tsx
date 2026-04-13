@@ -32,7 +32,7 @@ export default function HeroSection() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen lg:min-h-[1024px] flex items-center pt-20 overflow-hidden bg-surface-container-lowest"
+      className="relative min-h-screen lg:min-h-[1024px] flex items-start pt-50 overflow-hidden bg-surface-container-lowest"
     >
       {/* Particle canvas — parallax */}
       <motion.div className="absolute inset-x-0 top-0 bottom-[-80px] z-0" style={{ y: parallaxY }}>
