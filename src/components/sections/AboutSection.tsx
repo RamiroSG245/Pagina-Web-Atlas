@@ -25,8 +25,8 @@ const reasons = [
 
 export default function AboutSection() {
   return (
-    <section id="nosotros" className="py-32 bg-surface micro-grid">
-      <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="nosotros" className="py-16 lg:py-32 bg-surface micro-grid">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-20 lg:gap-20 items-center">
         {/* Photo grid — slides from left */}
         <motion.div
           className="order-2 lg:order-1"
@@ -43,9 +43,9 @@ export default function AboutSection() {
                 loading="lazy"
                 width="400"
                 height="256"
-                className="w-full h-72 object-cover rounded-lg border border-outline-variant/20"
+                className="w-full h-36 md:h-72 object-cover rounded-lg border border-outline-variant/20"
               />
-              <div className="bg-surface-container-high/70 p-5 rounded-lg border border-outline-variant/20 flex flex-col gap-3">
+              <div className="bg-surface-container-high/70 p-3 md:p-5 rounded-lg border border-outline-variant/20 flex flex-col gap-2 md:gap-3">
                 <span className="text-[13px] font-mono font-bold tracking-[0.2em] uppercase" style={{ color: '#fca903' }}>Nuestro ADN Operativo</span>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
                   Nuestra identidad se forja en el campo. Somos ingenieros con experiencia real en planta y yacimiento, trabajando para optimizar las operaciones críticas de Oil &amp; Gas en la Patagonia.
@@ -67,7 +67,7 @@ export default function AboutSection() {
                 loading="lazy"
                 width="400"
                 height="256"
-                className="w-full h-102 object-cover rounded-lg"
+                className="w-full h-80 md:h-102 object-cover rounded-lg"
               />
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function AboutSection() {
           viewport={{ once: true, margin: '-80px' }}
         >
           <SectionLabel>nuestra identidad</SectionLabel>
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tighter mb-8">
+          <h2 className="font-headline text-2xl md:text-5xl font-bold text-on-surface tracking-tighter mb-4 md:mb-8">
             ¿Por qué ATLAS?
           </h2>
 
@@ -92,16 +92,16 @@ export default function AboutSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            className="space-y-8"
+            className="space-y-4 md:space-y-8"
           >
             {reasons.map((reason) => (
-              <motion.div key={reason.number} variants={fadeUp} className="flex gap-6">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold">
+              <motion.div key={reason.number} variants={fadeUp} className="flex gap-4 md:gap-6">
+                <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary font-bold text-sm md:text-base">
                   {reason.number}
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold mb-2">{reason.title}</h4>
-                  <p className="text-on-surface-variant leading-relaxed">
+                  <h4 className="text-base md:text-xl font-bold mb-1 md:mb-2">{reason.title}</h4>
+                  <p className="text-sm md:text-base text-on-surface-variant leading-relaxed">
                     {reason.description}
                   </p>
                 </div>
