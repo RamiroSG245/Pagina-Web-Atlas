@@ -22,7 +22,7 @@ export const projects: Project[] = [
   },
   {
     client: 'CGC',
-    title: 'Sist. Ctrl. Cañadón Salto',
+    title: 'Sistema de Control Cañadón Salto',
     image: '/images/projects/cgc.jpeg',
     alt: 'Sistema de control para yacimiento Cañadón Salto de CGC',
   },

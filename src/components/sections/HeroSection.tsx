@@ -71,9 +71,9 @@ export default function HeroSection() {
           >
             Soluciones integrales para la {' '}
             <span className="text-on-surface font-medium underline decoration-primary/30">
-              AUTOMATIZACIÓN
+              AUTOMATIZACIÓN y 
             </span>
-            y {' '}
+             {' '}
             <span className="text-on-surface font-medium underline decoration-primary/30">
               CONTROL
             </span> de procesos para la industria energética
