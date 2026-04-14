@@ -85,14 +85,6 @@ export default function ProjectsSection() {
                 <h4 className="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
                   {project.title}
                 </h4>
-                <div className="h-0 group-hover:h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end">
-                  <button className="text-sm font-bold text-primary flex items-center gap-2">
-                    Ver detalles{' '}
-                    <span className="material-symbols-outlined text-sm">
-                      arrow_forward
-                    </span>
-                  </button>
-                </div>
               </div>
             </motion.div>
           ))}
