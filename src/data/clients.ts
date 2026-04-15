@@ -6,6 +6,9 @@ export interface Client {
 }
 
 export const clients: Client[] = [
+  { name: 'SISCON', logo: '/images/clients/webp/siscon.webp', width: 160 },
+  { name: 'ChampionX', logo: '/images/clients/webp/championx.webp', width: 220 },
+  { name: 'Halliburton', logo: '/images/clients/webp/halliburton.webp', width: 120 },
   { name: 'YPF', logo: '/images/clients/webp/ypf.webp', width: 150 },
   { name: 'PECOM', logo: '/images/clients/webp/pecom.webp', width: 160 },
   { name: 'AESA', logo: '/images/clients/webp/aesa.webp', width: 100 },
@@ -18,9 +21,6 @@ export const clients: Client[] = [
   { name: 'DIPAR', logo: '/images/clients/webp/dipar.webp', width: 150 },
   { name: 'Racklatina', logo: '/images/clients/webp/racklatina.webp', width: 200 },
   { name: 'Rockwell Automation', logo: '/images/clients/webp/rockwell.webp', width: 180 },
-  { name: 'SISCON', logo: '/images/clients/webp/siscon.webp', width: 160 },
-  { name: 'ChampionX', logo: '/images/clients/webp/championx.webp', width: 220 },
-  { name: 'Halliburton', logo: '/images/clients/webp/halliburton.webp', width: 120 },
   { name: 'Weatherford', logo: '/images/clients/webp/weatherford.webp', width: 200 },
   { name: 'NOV Tuboscope', logo: '/images/clients/webp/tuboscope.webp', width: 130 },
   { name: 'Tomrel', logo: '/images/clients/webp/tomrel.webp', width: 200 },

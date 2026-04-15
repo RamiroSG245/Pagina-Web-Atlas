@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useMotionValue, useAnimationFrame } from 'framer-motion'
 import { clients } from '../../data/clients'
 import { stats } from '../../data/stats'
 import { useStatCounter } from '../../hooks/useStatCounter'
@@ -25,17 +25,66 @@ function StatCard({ label, target }: { label: string; target: number }) {
 
 function ClientMarquee() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const x = useMotionValue(0)
+  const isDragging = useRef(false)
+  const [dragging, setDragging] = useState(false)
+  const dragStartX = useRef(0)
+  const dragStartXValue = useRef(0)
+
   const items = [...clients, ...clients]
 
-  function handleClick() {
-    if (!trackRef.current) return
-    const current = trackRef.current.style.animationPlayState
-    trackRef.current.style.animationPlayState = current === 'paused' ? 'running' : 'paused'
+  useAnimationFrame((_, delta) => {
+    if (isDragging.current || !trackRef.current) return
+    const halfWidth = trackRef.current.scrollWidth / 2
+    if (halfWidth === 0) return
+    // Maintain the same ~60s cycle as the original CSS animation
+    const speed = halfWidth / 60000
+    let next = x.get() - delta * speed
+    if (next <= -halfWidth) next += halfWidth
+    x.set(next)
+  })
+
+  function onPointerDown(e: React.PointerEvent) {
+    isDragging.current = true
+    setDragging(true)
+    dragStartX.current = e.clientX
+    dragStartXValue.current = x.get()
+    ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
+  }
+
+  function onPointerMove(e: React.PointerEvent) {
+    if (!isDragging.current) return
+    const delta = e.clientX - dragStartX.current
+    x.set(dragStartXValue.current + delta)
+  }
+
+  function onPointerUp() {
+    if (!isDragging.current) return
+    isDragging.current = false
+    setDragging(false)
+    // Normalize x to [-halfWidth, 0) so auto-scroll resumes seamlessly
+    if (trackRef.current) {
+      const halfWidth = trackRef.current.scrollWidth / 2
+      let cur = x.get() % halfWidth
+      if (cur > 0) cur -= halfWidth
+      x.set(cur)
+    }
   }
 
   return (
-    <div className="overflow-hidden cursor-pointer" onClick={handleClick}>
-      <div ref={trackRef} className="marquee-track flex gap-16 items-center py-4">
+    <div
+      className={`overflow-hidden select-none ${dragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerLeave={onPointerUp}
+      onPointerCancel={onPointerUp}
+    >
+      <motion.div
+        ref={trackRef}
+        style={{ x }}
+        className="flex gap-16 items-center py-4 w-max"
+      >
         {items.map((client, i) => (
           <div
             key={`${client.name}-${i}`}
@@ -50,7 +99,7 @@ function ClientMarquee() {
             />
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
