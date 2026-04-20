@@ -8,5 +8,5 @@ export const stats: Stat[] = [
   { value: 60, label: 'Proyectos' },
   { value: 15, label: 'Servicios' },
   { value: 20, label: 'Años de experiencia' },
-  { value: 7, label: 'Años de Vida' },
+  { value: 7, label: 'Años de Trayectoria' },
 ]
