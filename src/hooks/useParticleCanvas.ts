@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 const PARTICLE_COUNT = 60
 const CONNECTION_DISTANCE = 150
@@ -26,7 +26,7 @@ function createParticle(width: number, height: number): Particle {
 export function useParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -35,15 +35,22 @@ export function useParticleCanvas() {
     let particles: Particle[] = []
     let mouse = { x: null as number | null, y: null as number | null }
     let rafId: number
+    let logicalWidth = 0
+    let logicalHeight = 0
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      logicalWidth = canvas.offsetWidth
+      logicalHeight = canvas.offsetHeight
+      canvas.width = Math.round(logicalWidth * dpr)
+      canvas.height = Math.round(logicalHeight * dpr)
+      // Reset then reapply the DPR scale every call — never compound with ctx.scale
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       // Only initialize particles once — never reinitialize on resize (prevents
       // iOS Safari address bar show/hide from resetting particle positions)
       if (particles.length === 0) {
         particles = Array.from({ length: PARTICLE_COUNT }, () =>
-          createParticle(canvas.width, canvas.height)
+          createParticle(logicalWidth, logicalHeight)
         )
       }
     }
@@ -56,7 +63,7 @@ export function useParticleCanvas() {
     }
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, logicalWidth, logicalHeight)
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i]
@@ -64,8 +71,8 @@ export function useParticleCanvas() {
         // update
         p.x += p.vx
         p.y += p.vy
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+        if (p.x < 0 || p.x > logicalWidth) p.vx *= -1
+        if (p.y < 0 || p.y > logicalHeight) p.vy *= -1
 
         if (mouse.x != null && mouse.y != null) {
           const dx = p.x - mouse.x
@@ -145,12 +152,19 @@ export function useParticleCanvas() {
     // Debounced resize — prevents iOS Safari address bar transitions from
     // triggering unnecessary canvas dimension recalculations
     let resizeTimer: ReturnType<typeof setTimeout> | null = null
-    const onResize = () => {
+    const debouncedResize = () => {
       if (resizeTimer) clearTimeout(resizeTimer)
       resizeTimer = setTimeout(resize, 150)
     }
 
-    window.addEventListener('resize', onResize)
+    // ResizeObserver on the container catches layout-affecting events (font
+    // load, CSS reflow, orientation change) that don't fire window.resize —
+    // a strict superset of window.resize for this fluid, full-bleed container
+    const resizeObserver = new ResizeObserver(debouncedResize)
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement)
+    }
+
     if (!isTouchDevice) {
       window.addEventListener('mousemove', onMouseMove)
     }
@@ -160,7 +174,7 @@ export function useParticleCanvas() {
     return () => {
       cancelAnimationFrame(rafId)
       if (resizeTimer) clearTimeout(resizeTimer)
-      window.removeEventListener('resize', onResize)
+      resizeObserver.disconnect()
       if (!isTouchDevice) {
         window.removeEventListener('mousemove', onMouseMove)
       }

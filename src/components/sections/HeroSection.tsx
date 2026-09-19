@@ -36,7 +36,7 @@ export default function HeroSection() {
     >
       {/* Particle canvas — parallax */}
       <motion.div className="absolute inset-x-0 top-0 bottom-[-80px] z-0" style={{ y: parallaxY }}>
-        <canvas ref={canvasRef} aria-hidden="true" className="absolute top-0 left-0 w-full h-full pointer-events-none" />
+        <canvas ref={canvasRef} aria-hidden="true" width={1600} height={900} className="absolute top-0 left-0 w-full h-full pointer-events-none" />
         <div className="absolute inset-0 bg-surface-container-lowest/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(255,170,1,0.1)_0%,_transparent_60%)]" />
       </motion.div>
