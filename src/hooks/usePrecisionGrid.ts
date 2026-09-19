@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 const GRID_SIZE = 80
 
@@ -11,7 +11,7 @@ interface GridPoint {
 export function usePrecisionGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -33,10 +33,13 @@ export function usePrecisionGrid() {
     }
 
     const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
       width = canvas.offsetWidth
       height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
+      canvas.width = Math.round(width * dpr)
+      canvas.height = Math.round(height * dpr)
+      // Reset then reapply the DPR scale every call — never compound with ctx.scale
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       initPoints()
     }
 
@@ -93,13 +96,27 @@ export function usePrecisionGrid() {
       rafId = requestAnimationFrame(draw)
     }
 
-    window.addEventListener('resize', resize)
+    // Debounced resize — avoids redundant recalculations from rapid layout events
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null
+    const debouncedResize = () => {
+      if (resizeTimer) clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(resize, 150)
+    }
+
+    // ResizeObserver on the container catches layout-affecting events (font
+    // load, CSS reflow, viewport-triggered reveal) that don't fire window.resize
+    const resizeObserver = new ResizeObserver(debouncedResize)
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement)
+    }
+
     resize()
     rafId = requestAnimationFrame(draw)
 
     return () => {
       cancelAnimationFrame(rafId)
-      window.removeEventListener('resize', resize)
+      if (resizeTimer) clearTimeout(resizeTimer)
+      resizeObserver.disconnect()
     }
   }, [])
 
